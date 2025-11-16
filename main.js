@@ -2,8 +2,7 @@ let btn = document.getElementById("btn");
 let inp = document.getElementById("inp");
 let boxs = document.querySelectorAll('.box');//select all divs have class 'box'
 let drag = null;
-let trash= document.getElementsByClassName("trash");
-
+let trash = document.querySelectorAll('.trash');
 btn.onclick= function(){
     if(inp.value/*بجيب ال value الي هتتكتب في ال input*/ !='' ){
         boxs[0].innerHTML+=`
@@ -42,30 +41,21 @@ function dragItem(){
                 this.style.color = '#000';
             })
         })
-        // trash.forEach(trash=>{
-        //     trash.addEventListener('dragover',function(){
-        //         t.preventDefault();
-        //         this.style.background = '#090';
-        //         this.style.color = '#fff';
-        //         console.log("شغال");
-        //     })
-        // })
-
-
+        
+        
     })
 }
-function deleteContent(){
-    
-    trash.addEventListener('dragover',function(){
-        // t.preventDefault();
-        // this.style.background = '#090';
-        // this.style.color = '#fff';
-        console.log("true");
-    })
-    trash.addEventListener('drop', function(){
+// Trash
+trash.forEach(t=>{
+    t.addEventListener('dragover', function(e){
+        e.preventDefault();
+        this.style.background = "#900";
+        this.style.color = "#fff";
+    });
+
+    t.addEventListener('drop', function(){
         drag.remove();
-        this.style.background = '#fff';
-        this.style.color = '#000';
-    })
-    
-}
+        this.style.background = "#fff";
+        this.style.color = "#000";
+    });
+});
